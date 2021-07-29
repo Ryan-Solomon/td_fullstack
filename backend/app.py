@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.json import jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -13,3 +14,8 @@ class Todo(db.Model):
 
     def __repr__(self):
         return f"<Todo {self.id} {self.description}>"
+
+
+@app.route('/')
+def index():
+    return jsonify(data=Todo.query.all())
