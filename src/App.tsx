@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    async function getData() {
+      const promise = await fetch('/data');
+      const data = await promise.json();
+      console.log(data);
+    }
+
+    getData();
+  }, []);
+
   return (
     <div className='App'>
       <header className='App-header'>
